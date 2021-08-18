@@ -1,0 +1,119 @@
+{
+  "openapi": "3.0.0",
+  "info":{
+      "title" : "OpenApi For todolist",
+      "version": "1.0",
+      "description" : "OpenApi RestfullApi for todolist",
+      "termsOfService": "https://afdhalluthfi.com",
+      "contact":{
+          "name" : "afdhal luthfi",
+          "email" : "afdhalluthfibinsarbaini@gmail.com",
+          "url" : "https://afdhalluthfi.com"
+      },
+      "license":{
+        "name" :"APACHE 2.0",
+        "url" :"https://www.apache.org/licenses/LICENSE-2.0"
+      }
+  },
+  "servers":[
+      {  
+          "description": "Serve RestfullApi todolist",
+          "url": "https://{environment}.afdhalluthfi.com",
+          "variables": {
+              "environment":{
+                  "description": "server environment",
+                  "default": "dev",
+                  "enum": [
+                      "dev",
+                      "prod",
+                      "qa"
+                  ]
+              }
+          }
+      }
+  ],
+  "externalDocs": {
+      "description": "Documentasi eksternal Api Todolist",
+      "url": "https://afdhalluthfi.com/medium"
+  },
+  "paths":{
+      "/todolist":{
+        "get":{
+            "summary": "ambil semua data",
+            "parameters": [
+                {
+                    "name": "include done",
+                    "in": "query",
+                    "required": false,
+                    "description": "is include all to dolist",
+                    "schema":{
+                        "type": "boolean",
+                        "nullable": true
+                    
+                    }
+                },
+                {
+                    "name": "name",
+                    "in": "query",
+                    "required": false,
+                    "description": "fiter todo list by name",
+                    "schema":{
+                        "type": "string",
+                        "nullable": true,
+                        "minLength": 1,
+                        "maxLength": 100
+                    }
+                }
+            ],
+            "responses": {
+
+            }
+        },
+        "post":{
+            "summary": "menambah data todolist",
+            "description": "menambdah data todolist ke database",
+            "responses": {}
+        }
+      },
+      "/todolist/{idtodolist}":{
+          "delete":{
+              "summary": "menghapus data berdasarkan to dolist",
+              "description": "menghapus data langsung ke  database berdasarkan id",
+              "parameters": [
+                  {
+                    "name": "idtodolist",
+                    "in": "path",
+                    "required": true,
+                    "description": "for deleted todolist",
+                    "schema":{
+                        "type": "string"
+                    }
+                }
+              ],
+              "responses": {
+
+              }
+          },
+          "put":{
+              "summary": "updatade data berdasarakan id",
+              "description": "mengubah data berdasarakn id saja",
+              "parameters": [
+                  {
+                    "name": "idtodolist",
+                    "in": "path",
+                    "required": true,
+                    "description": "for updated todolist",
+                    "schema":{
+                        "type": "string"
+                    }
+                }
+              ],
+              "responses": {
+
+              }
+          }
+      }
+  }
+
+
+}
